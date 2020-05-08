@@ -16,13 +16,19 @@ export default class CreateCustomer extends Component {
             custName : '',
             country: '',
             businessType: '',
-            addone : '',
-            addtwo: '',
-            addthree: '',
-            postcode: '',
-            countrylist: [],
-            businesstypelist: [],
-            modal: false
+            addOne : '',
+            addTwo: '',
+            addThree: '',
+            postCode: '',
+            Status: 'New',
+            Purpose: '',
+            RMTeam: '',
+            PEP: '',
+            AnnualTurnOver: '',
+            EstimateTurnOver: '',
+            countryList: [],
+            businessTypeList: [],
+            modal: true
             
             // remember -- change modal to true - while integrating with landing page            
         };
@@ -30,10 +36,15 @@ export default class CreateCustomer extends Component {
         this.onChangeName = this.onChangeName.bind(this);
         this.onChangeCountry = this.onChangeCountry.bind(this);
         this.onChangeBusinessTyp = this.onChangeBusinessTyp.bind(this);
-        this.onChangeAddOne = this.onChangeAddOne.bind(this);
-        this.onChangeAddTwo = this.onChangeAddTwo.bind(this);
-        this.onChangeAddThree = this.onChangeAddThree.bind(this);
-        this.onChangePostCode = this.onChangePostCode.bind(this);
+        this.onChangeaddOne = this.onChangeaddOne.bind(this);
+        this.onChangeaddTwo = this.onChangeaddTwo.bind(this);
+        this.onChangeaddThree = this.onChangeaddThree.bind(this);
+        this.onChangepostCode = this.onChangepostCode.bind(this);
+        this.onChangePurpose = this.onChangePurpose.bind(this);
+        this.onChangeRMTeam = this.onChangeRMTeam.bind(this);
+        this.onChangePEP = this.onChangePEP.bind(this);
+        this.onChangeAnnualTurnOver = this.onChangeAnnualTurnOver.bind(this);
+        this.onChangeEstimateTurnOver = this.onChangeEstimateTurnOver.bind(this);
         this.toggle = this.toggle.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     };
@@ -41,9 +52,9 @@ export default class CreateCustomer extends Component {
     
     componentDidMount(){
         this.setState({
-            countrylist: ['','Afghanistan','Akrotiri','Albania','Algeria','American Samoa','Andorra','Angola','Antarctica','Argentina','Australia','Austria','Bangladesh','Belgium','Bhutan','Brazil','Bulgaria','Cameroon','Canada','Chile','China','Colombia','Costa Rica','Croatia','Cuba','Czech Republic','Denmark','Ecuador','Egypt','Estonia','Ethiopia','Fiji','Finland','France','Georgia','Germany','Ghana','Greece','Hong Kong','Hungary','Iceland','India','Indonesia','Iran','Iraq','Ireland','Isle of Man','Israel','Italy','Japan','Jordan','Kenya',"Korea, North","Korea, South",'Kuwait','Malaysia','Mexico','Nepal','Netherlands','New Zealand','Norway','Oman','Pakistan','Poland','Russia','Saudi Arabia','Singapore','Spain','Sri Lanka','Sweden','Switzerland','Thailand','Turkey','Uganda','Ukraine','United Kingdom','United States','Venezuela'
+            countryList: ['','Afghanistan','Akrotiri','Albania','Algeria','American Samoa','Andorra','Angola','Antarctica','Argentina','Australia','Austria','Bangladesh','Belgium','Bhutan','Brazil','Bulgaria','Cameroon','Canada','Chile','China','Colombia','Costa Rica','Croatia','Cuba','Czech Republic','Denmark','Ecuador','Egypt','Estonia','Ethiopia','Fiji','Finland','France','Georgia','Germany','Ghana','Greece','Hong Kong','Hungary','Iceland','India','Indonesia','Iran','Iraq','Ireland','Isle of Man','Israel','Italy','Japan','Jordan','Kenya',"Korea, North","Korea, South",'Kuwait','Malaysia','Mexico','Nepal','Netherlands','New Zealand','Norway','Oman','Pakistan','Poland','Russia','Saudi Arabia','Singapore','Spain','Sri Lanka','Sweden','Switzerland','Thailand','Turkey','Uganda','Ukraine','United Kingdom','United States','Venezuela'
         ],
-            businesstypelist: ['','Banking','Construction','Consumer Retail','Energy','Entertainment','Finance','Health','Hospitality','Media','Real Estate','Transportation']
+            businessTypeList: ['','Banking','Construction','Consumer Retail','Energy','Entertainment','Finance','Health','Hospitality','Media','Real Estate','Transportation']
         });
     }
     
@@ -56,11 +67,17 @@ export default class CreateCustomer extends Component {
             custName : '',
             country: '',
             businessType: '',
-            addone : '',
-            addtwo: '',
-            addthree: '',
-            postcode: ''
+            addOne : '',
+            addTwo: '',
+            addThree: '',
+            postCode: '',
+            Purpose: '',
+            RMTeam: '',
+            PEP: '',
+            AnnualTurnOver: '',
+            EstimateTurnOver: ''
         });
+        window.location = '/';
     }   
     //  method to reset the states required
 
@@ -89,53 +106,94 @@ export default class CreateCustomer extends Component {
         }
         //update state when - user selects a business type
     
-        onChangeAddOne(e){
+        onChangeaddOne(e){
             this.setState( {
-                addone : e.target.value
+                addOne : e.target.value
             }
             );
         }
     
         //update state when - user enters address line 1
         
-        onChangeAddTwo(e){
+        onChangeaddTwo(e){
             this.setState( {
-                addtwo : e.target.value
+                addTwo : e.target.value
             }
             );
         }
     
         //update state when - user enters address line 2
     
-        onChangeAddThree(e){
+        onChangeaddThree(e){
             this.setState( {
-                addthree : e.target.value
+                addThree : e.target.value
             }
             );
         }
     
         //update state when - user enters address line 3
     
-        onChangePostCode(e){
+        onChangepostCode(e){
             this.setState( {
-                postcode : e.target.value
+                postCode : e.target.value
             }
             );
         }
         //update state when - user enters post code
-    
+
+        onChangePurpose(e){
+            this.setState({
+                Purpose : e.target.value
+            });
+        }
+        // update state for Purpose
+
+        onChangeRMTeam(e){
+            this.setState({
+                RMTeam : e.target.value
+            });
+        }
+        // update state for RM Team
+
+        onChangePEP(e){
+            this.setState({
+                PEP : e.target.value
+            });
+        }
+        // update state for PEP
+
+        onChangeAnnualTurnOver(e){
+            this.setState({
+                AnnualTurnOver : e.target.value
+            });
+        }
+        // update state for AnnualTurnOVer
+
+        onChangeEstimateTurnOver(e){
+            this.setState({
+                EstimateTurnOver : e.target.value
+            });
+        }
+        // update state for Estimate TurnOVer
+
         onSubmit(e){
             e.preventDefault();
         
             const customer = {
-                custId: Math.random(),
+                custId: Date.now(),
                 custName: this.state.custName,
                 country: this.state.country,
                 businessType: this.state.businessType,
-                addone: this.state.addone,
-                addtwo: this.state.addtwo,
-                addthree: this.state.addthree,
-                postcode: this.state.postcode
+                addOne: this.state.addOne,
+                addTwo: this.state.addTwo,
+                addThree: this.state.addThree,
+                postCode: this.state.postCode,
+                Status: this.state.Status,
+                Purpose: this.state.Purpose,
+                RMTeam: this.state.RMTeam,
+                PEP: this.state.PEP,
+                AnnualTurnOver: this.state.AnnualTurnOver,
+                EstimateTurnOver: this.state.EstimateTurnOver
             };
             
             // create a customer object to be passes and add all the properties
@@ -147,33 +205,37 @@ export default class CreateCustomer extends Component {
             axios.post('https://onboardingapplication.azurewebsites.net/customers/',customer)
             .then(res => {
                 console.log(res.data);
-                alert("Customer Saved Successfully!")})
+                alert("Customer Saved Successfully!")
+
+                this.setState ({
+                    custId : '',
+                    custName : '',
+                    country: '',
+                    businessType: '',
+                    addOne : '',
+                    addTwo: '',
+                    addThree: '',
+                    postCode: '',
+                    Status: '',
+                    Purpose: '',
+                    RMTeam: '',
+                    PEP: '',
+                    AnnualTurnOver: '',
+                    EstimateTurnOver: '',
+                    modal: false
+                });
+
+                window.location = '/';
+                
+            })
             .catch((error) => {
                 console.log(error);
-                alert("There was an error saving the customer : " + error)
+                alert("There was an error saving the customer : " + error);
+                window.location = '/';
             });
 
             //connect with backend API and do a post and check for errors, or alert on a successful addition
-
-            this.setState ({
-                custId : '',
-                custName : '',
-                country: '',
-                businessType: '',
-                addone : '',
-                addtwo: '',
-                addthree: '',
-                postcode: '',
-                modal: false
-            });
-            
-            // reset the states before leaving the component to initialise the values for the next render.
-            
-//            window.location = '/';
-            
-            // remember - Comment/Remove window.location also before integrating with landing page
-            // meant for a stand alone testing of the page
-             
+            // reset the states before leaving the component to initialise the values for the next render.             
         }
     
     // submit the form
@@ -183,15 +245,15 @@ export default class CreateCustomer extends Component {
     render(){
         return(
         <div>
-            <Button onClick={this.toggle}>New Customer</Button>
+            
             <Modal  show={this.state.modal} fade="false" style={{width: "1400px", display: "block"}}>
                 <Modal.Header>
-                    <h6>Customer Registration Form</h6>
+                    <h5>Customer Registration Form</h5>
                 </Modal.Header>
-                    <Modal.Body>
+                    <Modal.Body style={{'maxHeight': 'calc(100vh - 200px)', 'overflowY': 'auto'}}>
                         <Form horizontal="true" className="col-sm-12 offset sm-3" onSubmit={this.onSubmit}>
                             <Form.Group>
-                                <Form.Label inline="true" size="sm">Name</Form.Label>
+                                <Form.Label inline="true" size="sm">Customer Name</Form.Label>
                                 <Form.Control inline="true" type="text" required size="sm" value = {this.state.custName} 
                                 onChange = {this.onChangeName} placeholder="Enter name" />
                             </Form.Group>
@@ -201,7 +263,7 @@ export default class CreateCustomer extends Component {
                                 <Form.Control as ="select"  required size="sm" value={this.state.country}
                                         onChange = {this.onChangeCountry}>
                                         {
-                                            this.state.countrylist.map(function(country){
+                                            this.state.countryList.map(function(country){
                                                 return <option
                                                 key={country}
                                                 value={country}>{country}
@@ -215,7 +277,7 @@ export default class CreateCustomer extends Component {
                                 <Form.Control as ="select" placeholder="Select" required size="sm" value = {this.state.businessType} 
                                         onChange = {this.onChangeBusinessTyp}>
                                             {
-                                                this.state.businesstypelist.map(function(businessType){
+                                                this.state.businessTypeList.map(function(businessType){
                                                     return <option
                                                     key={businessType}
                                                     value={businessType}>{businessType}
@@ -227,24 +289,55 @@ export default class CreateCustomer extends Component {
                             </Form.Row>
                             <Form.Group>
                                 <Form.Label inline="true" size="sm">Main Address Line 1</Form.Label>
-                                <Form.Control inline="true" type="text" required size="sm" value = {this.state.addone} 
-                                        onChange = {this.onChangeAddOne} placeholder="Enter Address Line 1" />
+                                <Form.Control inline="true" type="text" required size="sm" value = {this.state.addOne} 
+                                        onChange = {this.onChangeaddOne} placeholder="Enter Address Line 1" />
                             </Form.Group>
                             <Form.Group>
                                 <Form.Label inline="true" size="sm">Main Address Line 2</Form.Label>
-                                <Form.Control inline="true" type="text" required="" size="sm" value = {this.state.addtwo} 
-                                    onChange = {this.onChangeAddTwo} placeholder="Enter Address Line 2" />
+                                <Form.Control inline="true" type="text" required="" size="sm" value = {this.state.addTwo} 
+                                    onChange = {this.onChangeaddTwo} placeholder="Enter Address Line 2" />
                             </Form.Group>
                             <Form.Group>
                                 <Form.Label inline="true" size="sm">Main Address Line 3</Form.Label>
-                                <Form.Control inline="true" type="text" required="" size="sm" value = {this.state.addthree} 
-                                    onChange = {this.onChangeAddThree} placeholder="Enter Address Line 3" />
+                                <Form.Control inline="true" type="text" required="" size="sm" value = {this.state.addThree} 
+                                    onChange = {this.onChangeaddThree} placeholder="Enter Address Line 3" />
                             </Form.Group>
-                            <Form.Group>
+                            <Form.Row>
+                            <Form.Group className="col-sm-6 offset sm-3">
                                 <Form.Label inline="true" size="sm">Post Code</Form.Label>
-                                <Form.Control inline="true" type="text" required size="sm" value = {this.state.postcode} 
-                                    onChange = {this.onChangePostCode} placeholder="Enter Post Code" />
+                                <Form.Control inline="true" type="text" required size="sm" value = {this.state.postCode} 
+                                    onChange = {this.onChangepostCode} placeholder="Enter Post Code" />
                             </Form.Group>
+                            <Form.Group className="col-sm-6 offset sm-3">
+                                <Form.Label inline="true" size="sm">Pupose</Form.Label>
+                                <Form.Control inline="true" type="text" required="" size="sm" value = {this.state.Purpose} 
+                                    onChange = {this.onChangePurpose} placeholder="Enter Purpose" />
+                            </Form.Group>
+                            </Form.Row>
+                            <Form.Row>
+                            <Form.Group className="col-sm-6 offset sm-3">
+                                <Form.Label inline="true" size="sm">RM Team</Form.Label>
+                                <Form.Control inline="true" type="text" required="" size="sm" value = {this.state.RMTeam} 
+                                    onChange = {this.onChangeRMTeam} placeholder="Enter the RM Team" />
+                            </Form.Group>
+                            <Form.Group className="col-sm-6 offset sm-3">
+                                <Form.Label inline="true" size="sm">PEP</Form.Label>
+                                <Form.Control inline="true" type="text" required="" size="sm" value = {this.state.PEP} 
+                                    onChange = {this.onChangePEP} placeholder="Enter PEP" />
+                            </Form.Group>
+                            </Form.Row>
+                            <Form.Row>
+                            <Form.Group className="col-sm-6 offset sm-3">
+                                <Form.Label inline="true" size="sm">Annual Turnover</Form.Label>
+                                <Form.Control inline="true" type="number" required="" size="sm" value = {this.state.AnnualTurnOver} 
+                                    onChange = {this.onChangeAnnualTurnOver} placeholder="Enter Annual TO" />
+                            </Form.Group>
+                            <Form.Group className="col-sm-6 offset sm-3">
+                                <Form.Label inline="true" size="sm">Estimated Turnover</Form.Label>
+                                <Form.Control inline="true" type="number" required="" size="sm" value = {this.state.EstimateTurnOver} 
+                                    onChange = {this.onChangeEstimateTurnOver} placeholder="Enter Estimate TO" />
+                            </Form.Group>
+                            </Form.Row>
                             <Form.Group>
                                 <Button type="submit" className="btn btn-primary">Create Customer</Button>
                                     {' '}

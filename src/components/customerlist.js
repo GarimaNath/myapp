@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
-import Table from 'react-bootstrap/Table'
+ import React, { Component } from 'react';
+import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
 
 class CustomerList extends Component {
 	
@@ -9,9 +10,12 @@ class CustomerList extends Component {
 		this.state = {
 		  data: []
 		};
+
+		this.displayModal = this.displayModal.bind(this);
 	  }
 
-	callCustomerService(pageNumber){
+
+	callCustomerService(){
 
 		const url = 'https://onboardingapplication.azurewebsites.net/customers/'
 
@@ -27,6 +31,11 @@ class CustomerList extends Component {
 	componentDidMount() {
 		this.callCustomerService();
 	}
+
+	displayModal(){
+		window.location = '/addcustomer';
+		
+	  }
 
 	render() {
     
@@ -64,13 +73,17 @@ class CustomerList extends Component {
 	
     return (
 		<div>
+		<div>
+			<Button onClick={this.displayModal}>New Customer</Button>
+	    </div><br></br>
+		<div>
 			<Table striped bordered hover responsive>
 			<TableHeader/>
 			<tbody>		
 			{result}
 			</tbody>
 			</Table>
-		</div>
+		</div></div>
     );
 	}
   }

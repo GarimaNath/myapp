@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import CustomerList from './components/customerlist'
+import React, { Component } from 'react';
+import CustomerList from './components/customerlist';
 import CreateCustomer from "./components/create-customer.component";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
@@ -9,7 +9,7 @@ class App extends Component {
     return (
       <Router>
       <div className="container">
-        <Route path="/" component={CreateCustomer} /><br></br>
+        <Route path="/addcustomer" component={CreateCustomer} /><br></br>
         <Route path="/" component={CustomerList} />
         
       </div>
