@@ -50,7 +50,6 @@ class CustomerList extends Component {
 	  )
 	}
 
-	
 	const result = data.map(row => (
 		<tr key={row._id}>
         <td>{row.custName}</td>
