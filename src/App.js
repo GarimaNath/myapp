@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import CustomerList from './customerlist'
+import CustomerList from './components/customerlist'
 
 
 class App extends Component {
