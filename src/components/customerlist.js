@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table'
 
 class CustomerList extends Component {
@@ -60,7 +59,6 @@ class CustomerList extends Component {
 		<td>{row.PEP}</td>
 		<td>{row.AnnualTurnOver}</td>
 		<td>{row.EstimateTurnOver}</td>
-		<td><Button variant="primary" className="mr-2" href="#">Edit</Button></td>
         </tr>
 		))
 	
