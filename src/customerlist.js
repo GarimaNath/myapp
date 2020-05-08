@@ -14,7 +14,7 @@ class CustomerList extends Component {
 
 	callCustomerService(pageNumber){
 
-		const url = 'https:onboardingapplication.azurewebsites.net/customers/'
+		const url = 'https://onboardingapplication.azurewebsites.net/customers/'
 
 		fetch(url)
 		  .then(result => result.json())
